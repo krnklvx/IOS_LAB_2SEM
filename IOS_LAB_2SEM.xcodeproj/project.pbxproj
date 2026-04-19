@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A10000012F7F1AB200F30C05 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A10000012F7F1AB200F30C03 /* Kingfisher */; };
+		A10000012F7F1AB200F30C06 /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = A10000012F7F1AB200F30C04 /* UIComponents */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4687B4F72F7F1AB200F30BF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -35,12 +40,12 @@
 			path = IOS_LAB_2SEM;
 			sourceTree = "<group>";
 		};
-		4687B4F92F7F1AB200F30BF8 /* IOS_LAB_2SEMTests */ = {
+		B20000012F7F1AB200F30D01 /* IOS_LAB_2SEMTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = IOS_LAB_2SEMTests;
 			sourceTree = "<group>";
 		};
-		4687B5032F7F1AB200F30BF8 /* IOS_LAB_2SEMUITests */ = {
+		B20000012F7F1AB200F30D02 /* IOS_LAB_2SEMUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = IOS_LAB_2SEMUITests;
 			sourceTree = "<group>";
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10000012F7F1AB200F30C05 /* Kingfisher in Frameworks */,
+				A10000012F7F1AB200F30C06 /* UIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				4687B4EB2F7F1AAE00F30BF8 /* IOS_LAB_2SEM */,
-				4687B4F92F7F1AB200F30BF8 /* IOS_LAB_2SEMTests */,
-				4687B5032F7F1AB200F30BF8 /* IOS_LAB_2SEMUITests */,
+				B20000012F7F1AB200F30D01 /* IOS_LAB_2SEMTests */,
+				B20000012F7F1AB200F30D02 /* IOS_LAB_2SEMUITests */,
 				4687B4EA2F7F1AAD00F30BF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +119,8 @@
 			);
 			name = IOS_LAB_2SEM;
 			packageProductDependencies = (
+				A10000012F7F1AB200F30C03 /* Kingfisher */,
+				A10000012F7F1AB200F30C04 /* UIComponents */,
 			);
 			productName = IOS_LAB_2SEM;
 			productReference = 4687B4E92F7F1AAD00F30BF8 /* IOS_LAB_2SEM.app */;
@@ -131,7 +140,7 @@
 				4687B4F82F7F1AB200F30BF8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4687B4F92F7F1AB200F30BF8 /* IOS_LAB_2SEMTests */,
+				B20000012F7F1AB200F30D01 /* IOS_LAB_2SEMTests */,
 			);
 			name = IOS_LAB_2SEMTests;
 			packageProductDependencies = (
@@ -154,7 +163,7 @@
 				4687B5022F7F1AB200F30BF8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				4687B5032F7F1AB200F30BF8 /* IOS_LAB_2SEMUITests */,
+				B20000012F7F1AB200F30D02 /* IOS_LAB_2SEMUITests */,
 			);
 			name = IOS_LAB_2SEMUITests;
 			packageProductDependencies = (
@@ -195,6 +204,10 @@
 			);
 			mainGroup = 4687B4E02F7F1AAD00F30BF8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A10000012F7F1AB200F30C01 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A10000012F7F1AB200F30C02 /* XCLocalSwiftPackageReference "UIComponents" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4687B4EA2F7F1AAD00F30BF8 /* Products */;
 			projectDirPath = "";
@@ -558,6 +571,37 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A10000012F7F1AB200F30C02 /* XCLocalSwiftPackageReference "UIComponents" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = UIComponents;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000012F7F1AB200F30C01 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000012F7F1AB200F30C03 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000012F7F1AB200F30C01 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		A10000012F7F1AB200F30C04 /* UIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000012F7F1AB200F30C02 /* XCLocalSwiftPackageReference "UIComponents" */;
+			productName = UIComponents;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4687B4E12F7F1AAD00F30BF8 /* Project object */;
 }
