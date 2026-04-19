@@ -14,7 +14,7 @@ final class ProfileViewController: UIViewController {
     private let followButton = UIButton(type: .system)
 
     private var currentUser: User?
-    private weak var followViewModel: UsersViewModel?
+    private var followViewModel: UsersViewModel?
 
     override func viewDidLoad() { //метод жизненного цикла один раз при загрузке вью
         super.viewDidLoad() //род реализация
@@ -26,6 +26,7 @@ final class ProfileViewController: UIViewController {
         setupLayout() //расположение элементов
     }
 
+    //обновляет данные
     func configure(user: User, followViewModel: UsersViewModel) { //показ нового польз
         self.followViewModel = followViewModel
         currentUser = user
@@ -35,18 +36,19 @@ final class ProfileViewController: UIViewController {
         avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = 48
         avatarImageView.layer.masksToBounds = true
+        //используем библиотеку
         avatarImageView.kf.setImage(
             with: user.avatarURL,
             placeholder: UIImage(systemName: "person.crop.circle.fill")
         )
-        applyFollowTitle() //кнопка
+        applyFollowTitle() //кнопка подписан/не обновл
     }
 
     private func setupCard() {
         cardView.translatesAutoresizingMaskIntoConstraints = false //отключаем автомат изменение размеров
         cardView.backgroundColor = .secondarySystemGroupedBackground
         cardView.layer.cornerRadius = 16
-        cardView.layer.cornerCurve = .continuous //скр
+        cardView.layer.cornerCurve = .continuous //скругление
     
         view.addSubview(cardView) //доб карт на вью
 
@@ -56,7 +58,7 @@ final class ProfileViewController: UIViewController {
         }
 
         nameLabel.font = .preferredFont(forTextStyle: .title2)
-        nameLabel.textColor = .label
+        nameLabel.textColor = .label //адаптивные цвета для darkmode
         nameLabel.textAlignment = .center
         nameLabel.numberOfLines = 0
 
@@ -78,18 +80,20 @@ final class ProfileViewController: UIViewController {
     }
 
     private func applyFollowTitle() {
-        var cfg = UIButton.Configuration.filled()
-        if let id = currentUser?.id, followViewModel?.isFollowing(userId: id) == true {
+        var cfg = UIButton.Configuration.filled() //конфигурация для кнопки
+        if let id = currentUser?.id, followViewModel?.isFollowing(userId: id) == true { //если есть айди и подписка
             cfg.title = "Following"
         } else {
             cfg.title = "Follow"
         }
         cfg.cornerStyle = .medium
-        followButton.configuration = cfg
+        followButton.configuration = cfg //применяем конфигурацию
     }
 
+    //настройки расположения
     private func setupLayout() {
         let avatarSize: CGFloat = 96
+        //массив правил расп отступы от чего сколько
         NSLayoutConstraint.activate([
             cardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             cardView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),

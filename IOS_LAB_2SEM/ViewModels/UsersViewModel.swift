@@ -2,13 +2,10 @@
 //  UsersViewModel.swift
 //  IOS_LAB_2SEM
 //
-//  Урок 12: TaskGroup, отмена через Task.cancel(), интеграция с UsersCache.
-//  Урок 15: сервис через init; Environment — в ContentView.
-//
 
 import SwiftUI
 
-@MainActor
+@MainActor //для перерисовки публишед
 final class UsersViewModel: ObservableObject {
     @Published private(set) var users: [User] = [] //только вьюмодел может менять вью нет
     @Published private(set) var isLoading = false
@@ -18,7 +15,7 @@ final class UsersViewModel: ObservableObject {
     private let service: any UsersService
     private var loadTask: Task<Void, Never>? //тек задача
 
-    init(service: any UsersService) {
+    init(service: any UsersService) { //di
         self.service = service
     }
 
@@ -33,7 +30,7 @@ final class UsersViewModel: ObservableObject {
     }
 
     func toggleFollow(userId: Int) {
-        var next = followedUserIds
+        var next = followedUserIds //копия
         if next.contains(userId) {
             next.remove(userId)
         } else {
@@ -41,9 +38,7 @@ final class UsersViewModel: ObservableObject {
         }
         followedUserIds = next
     }
-
-    //не привязан к главному потоку фон
-
+    //запуск загрзуки
     func startLoad(ids: [Int] = Array(1 ... 10)) { //загрузка пользователей id 1...10
         loadTask?.cancel() //отменяем пред загрузку при повторном нажатии
         loadTask = Task { @MainActor in

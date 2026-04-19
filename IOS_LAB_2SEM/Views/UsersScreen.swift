@@ -9,8 +9,8 @@ import UIComponents
 struct UsersScreen: View {
     @StateObject private var viewModel: UsersViewModel
 
-    init(service: (any UsersService)? = nil) {
-        _viewModel = StateObject(wrappedValue: UsersViewModel(service: service ?? RealUsersService()))
+    init(service: any UsersService = RealUsersService()) {
+        _viewModel = StateObject(wrappedValue: UsersViewModel(service: service)) //следит за состоянием
     }
 
     var body: some View {
@@ -37,7 +37,7 @@ struct UsersScreen: View {
                 }
 
                 //список юзеров
-                List(viewModel.users) { user in
+                List(viewModel.users) { user in //для каждого строка
                     NavigationLink {
                         ProfileDetailView(viewModel: viewModel, user: user)
                     } label: {

@@ -6,7 +6,7 @@
 import XCTest
 @testable import IOS_LAB_2SEM
 
-@MainActor
+@MainActor //там же где и viewmodel
 final class UsersViewModelTests: XCTestCase {
     func testLoadOk() async {
         let mock = MockUsersService()

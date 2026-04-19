@@ -10,7 +10,7 @@ public struct AsyncImageView: View {
     }
 
     public var body: some View {
-        AsyncImage(url: url) { phase in
+        AsyncImage(url: url) { phase in //замыкание с 3мя состояниями
             switch phase {
             case .empty:
                 ProgressView()

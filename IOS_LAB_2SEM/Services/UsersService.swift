@@ -13,7 +13,7 @@ actor RealUsersService: UsersService {
     private let cache = UsersCache(maxParallelFetches: 3)
 
     func loadUsers(ids: [Int]) async throws -> [User] {
-        try await withThrowingTaskGroup(of: User.self) { group in //группа задач
+        try await withThrowingTaskGroup(of: User.self) { group in //группа задач для параллельного выполнения
             for id in ids {
                 group.addTask {
                     try await self.cache.loadUser(id: id) { uid in //если есть в кэше загружаем, если нет то идем в инет

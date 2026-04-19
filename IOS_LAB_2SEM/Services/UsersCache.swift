@@ -6,20 +6,22 @@
 import Foundation
 import os.log
 
-actor UsersCache {
+actor UsersCache { //последовательное обращение
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "IOS_LAB_2SEM", category: "UsersCache")
 
-    private var storage: [Int: User] = [:]
-    private var inFlightIds: Set<Int> = [] //запущенные айди
+    private var storage: [Int: User] = [:] //словарь для кэша
+    private var inFlightIds: Set<Int> = [] //запущенные айди предотвращает дублирование
 
-    private let maxParallelFetches: Int
+    private let maxParallelFetches: Int //ограничение параллельных запросов
     private var activeFetches = 0
 
     init(maxParallelFetches: Int = 3) {
         self.maxParallelFetches = max(1, maxParallelFetches)
     }
 
+    //загрузка польз
     func user(for id: Int) -> User? {
+        //если есть в кэше - возвр
         if let user = storage[id] {
             logger.info("user(for:) — hit, id=\(id, privacy: .public)") //из кэша
             return user
@@ -36,8 +38,8 @@ actor UsersCache {
     func loadUser(
         id: Int,
         fetch: @Sendable @escaping (Int) async throws -> User
-    ) async throws -> User {
-        if let cached = storage[id] { //из кэша
+    ) async throws -> User { //замык
+        if let cached = storage[id] { //если в кэше
             logger.info("loadUser — cache hit, id=\(id, privacy: .public)")
             return cached
         }
