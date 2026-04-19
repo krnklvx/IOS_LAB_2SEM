@@ -9,7 +9,7 @@ protocol UsersService {
     func loadUsers(ids: [Int]) async throws -> [User]
 }
 
-actor RealUsersService: UsersService {
+class RealUsersService: UsersService {
     private let cache = UsersCache(maxParallelFetches: 3)
 
     func loadUsers(ids: [Int]) async throws -> [User] {
