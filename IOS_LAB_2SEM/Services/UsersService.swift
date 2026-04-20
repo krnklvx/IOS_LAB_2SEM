@@ -6,7 +6,7 @@
 import Foundation
 
 protocol UsersService {
-    func loadUsers(ids: [Int]) async throws -> [User]
+    func loadUsers(ids: [Int]) async throws -> [User] //должны уметь
 }
 
 class RealUsersService: UsersService {

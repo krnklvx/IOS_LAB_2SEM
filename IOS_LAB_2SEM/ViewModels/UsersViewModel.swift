@@ -14,7 +14,8 @@ final class UsersViewModel: ObservableObject {
 
     private let service: any UsersService
     private var loadTask: Task<Void, Never>? //тек задача
-
+    //try Task.checkCancellation()
+    
     init(service: any UsersService) { //di
         self.service = service
     }

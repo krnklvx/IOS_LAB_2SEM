@@ -8,6 +8,7 @@ import XCTest
 
 @MainActor //там же где и viewmodel
 final class UsersViewModelTests: XCTestCase {
+    //мок с одним юзером в вьюмодел вызываем загрузку и проверяем
     func testLoadOk() async {
         let mock = MockUsersService()
         let u = User(id: 1, name: "Test", username: "t", email: "t@test.com")

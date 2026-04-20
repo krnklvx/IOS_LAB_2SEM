@@ -19,7 +19,7 @@ actor UsersCache { //последовательное обращение
         self.maxParallelFetches = max(1, maxParallelFetches)
     }
 
-    //загрузка польз
+    //загрузка польз проверяет есть ли
     func user(for id: Int) -> User? {
         //если есть в кэше - возвр
         if let user = storage[id] {
@@ -43,8 +43,8 @@ actor UsersCache { //последовательное обращение
             logger.info("loadUser — cache hit, id=\(id, privacy: .public)")
             return cached
         }
-
-        while inFlightIds.contains(id) { //если запрос для айди выполняется
+        //если запрос для id уже запущен остальные попадают в цикл ожидания
+        while inFlightIds.contains(id) {
             logger.debug("loadUser — waiting duplicate id=\(id, privacy: .public)")
             try Task.checkCancellation() //проверяем отмену
             try await Task.sleep(nanoseconds: 100_000_000)
@@ -53,6 +53,7 @@ actor UsersCache { //последовательное обращение
             }
         }
 
+        //перед новым запросом проверяем лимит, да - задача ждёт в цикле
         while activeFetches >= maxParallelFetches { //если достигнут лимит
             try Task.checkCancellation()
             try await Task.sleep(nanoseconds: 100_000_000) //ждем

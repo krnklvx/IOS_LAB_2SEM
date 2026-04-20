@@ -9,7 +9,7 @@ import UIComponents
 struct UsersScreen: View {
     @StateObject private var viewModel: UsersViewModel
 
-    init(service: any UsersService = RealUsersService()) {
+    init(service: any UsersService = RealUsersService()) { //любой объект подходящий под протокол
         _viewModel = StateObject(wrappedValue: UsersViewModel(service: service)) //следит за состоянием
     }
 
